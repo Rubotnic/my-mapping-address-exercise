@@ -1,7 +1,5 @@
 package se.lexicon.myspringbootfirstlook.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
@@ -21,10 +19,6 @@ public class Address {
     private String zipCode;
     @Column(nullable = false, length = 100)
     private String city;
-
-//    @OneToMany(mappedBy = "addresslist")
-//    @JoinColumn(name = "address_user_id")
-//    private AppUser appUser;
 
     @OneToMany(mappedBy = "address")
 //    @JoinColumn(name = "address_user_id")

@@ -21,15 +21,9 @@ public class AppUser {
     @Column(length = 100, nullable = false)
     private String password;
 
-
-//    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-//    @JoinColumn(name = "address_user_id", referencedColumnName = "id")
-//    private Address currentaddress;
-
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "address_user_id")
     private Address address;
-
 
     protected AppUser() {}
 
@@ -96,15 +90,6 @@ public class AppUser {
     public void setAddress(Address address) {
         this.address = address;
     }
-
-    //    public list<Address> getAddresslist() {
-//        return addresslist;
-//    }
-//
-//    public void setAddresslist(list<Address> addresslist) {
-//        this.addresslist = addresslist;
-//    }
-
 
     @Override
     public boolean equals(Object o) {
