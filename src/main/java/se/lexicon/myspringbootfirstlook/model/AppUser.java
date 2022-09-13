@@ -1,7 +1,6 @@
 package se.lexicon.myspringbootfirstlook.model;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Objects;
 // MANY-TO-ONE
 @Entity
