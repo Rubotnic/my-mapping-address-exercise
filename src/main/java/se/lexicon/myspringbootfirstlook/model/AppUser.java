@@ -1,8 +1,9 @@
 package se.lexicon.myspringbootfirstlook.model;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
-
+// MANY-TO-ONE
 @Entity
 @Table(name = "appusers")
 public class AppUser {
@@ -21,8 +22,12 @@ public class AppUser {
     private String password;
 
 
+//    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+//    @JoinColumn(name = "address_user_id", referencedColumnName = "id")
+//    private Address currentaddress;
+
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-//    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    @JoinColumn(name = "address_user_id")
     private Address address;
 
 
@@ -42,12 +47,15 @@ public class AppUser {
         this.password = password;
     }
 
-    public AppUser(String email, String name, String password, Address address) {
+    public AppUser(int userId, String email, String name, String password, Address address) {
+        this.userId = userId;
         this.email = email;
         this.name = name;
         this.password = password;
         this.address = address;
     }
+
+
 
     public int getUserId() {
         return userId;
@@ -84,9 +92,18 @@ public class AppUser {
     public Address getAddress() {
         return address;
     }
-    public void setAddress(Address address){
+
+    public void setAddress(Address address) {
         this.address = address;
     }
+
+    //    public list<Address> getAddresslist() {
+//        return addresslist;
+//    }
+//
+//    public void setAddresslist(list<Address> addresslist) {
+//        this.addresslist = addresslist;
+//    }
 
 
     @Override

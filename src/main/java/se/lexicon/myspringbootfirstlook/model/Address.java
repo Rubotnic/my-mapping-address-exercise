@@ -1,8 +1,12 @@
 package se.lexicon.myspringbootfirstlook.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
+// ONE-TO-MANY
 @Entity
 @Table(name = "addresses")
 public class Address {
@@ -18,18 +22,22 @@ public class Address {
     @Column(nullable = false, length = 100)
     private String city;
 
-//    @OneToMany()
-//    @JoinColumn(name = "address_id")
+//    @OneToMany(mappedBy = "addresslist")
+//    @JoinColumn(name = "address_user_id")
 //    private AppUser appUser;
 
-    public Address() {
-    }
+    @OneToMany(mappedBy = "address")
+//    @JoinColumn(name = "address_user_id")
+    private Set<AppUser> appUserlist;
 
-    public Address(int id, String city, String street, String zipCode) {
-        this.userId = id;
-        this.city = city;
+    protected Address() {}
+
+    public Address(int userId, String street, String zipCode, String city, Set<AppUser> appUserlist) {
+        this.userId = userId;
         this.street = street;
         this.zipCode = zipCode;
+        this.city = city;
+        this.appUserlist = appUserlist;
     }
 
     public Address(String city, String street, String zipCode) {
@@ -37,6 +45,7 @@ public class Address {
         this.street = street;
         this.zipCode = zipCode;
     }
+
 
     public int getUserId() {
         return userId;
@@ -70,6 +79,23 @@ public class Address {
         this.city = city;
     }
 
+    public Set<AppUser> getAppUserlist() {
+        return appUserlist;
+    }
+
+    public void setAppUserlist(Set<AppUser> appUserlist) {
+        this.appUserlist = appUserlist;
+    }
+
+//    public AppUser getAppUser() {
+//        return appUser;
+//    }
+//
+//    public void setAppUser(AppUser appUser) {
+//        this.appUser = appUser;
+//    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -90,6 +116,10 @@ public class Address {
                 ", street='" + street + '\'' +
                 ", zipCode='" + zipCode + '\'' +
                 ", city='" + city + '\'' +
+                ", appUserlist=" + appUserlist +
                 '}';
+    }
+
+    private class list<T> {
     }
 }
